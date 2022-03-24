@@ -34,7 +34,7 @@ class User:
     
     query = "INSERT INTO users (username, email, password) VALUES (%(username)s, %(email)s, %(password)s);"
     
-    result = connectToMySQL('login_and_registration').query_db(query, data)
+    result = connectToMySQL('user_portfolio').query_db(query, data)
     
     return result
   
@@ -51,7 +51,7 @@ class User:
     
     query = "SELECT * FROM users WHERE email = %(email)s;"
     
-    results = connectToMySQL('login_and_registration').query_db(query, data)
+    results = connectToMySQL('user_portfolio').query_db(query, data)
     
     users = []
 
@@ -73,7 +73,9 @@ class User:
     
     query = "SELECT * FROM users WHERE username = %(username)s;"
     
-    results = connectToMySQL('login_and_registration').query_db(query, data)
+    results = connectToMySQL('user_portfolio').query_db(query, data)
+    
+    print(results)
     
     users = []
 

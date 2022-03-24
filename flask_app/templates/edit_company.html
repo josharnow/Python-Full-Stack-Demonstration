@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit {{company.name}}</title>
+</head>
+
+<body>
+  <h1>Edit {{company.name}}</h1>
+
+  {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+    {% if messages %}                            <!-- check if there are any messages -->
+      {% for message in messages %}            <!-- loop through the messages -->
+        <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <form action="/companies/{{company.id}}/update" method="POST">
+    <label for="name">Edit name: </label> <!-- "name" matches with id attribute for input -->
+    <input type="text" id="name" name="name" value='{{company.name}}'><br>
+
+    <label for="symbol">Edit ticker symbol: </label>
+    <input type="text" id="symbol" name="ticker_symbol" maxlength="5" value='{{company.ticker_symbol}}'><br>
+
+    <label for="exchange">Edit stock exchange: </label>
+    <input type="text" id="exchange" name="stock_exchange" value='{{company.stock_exchange}}'><br>
+
+    <label for="shares">Edit total shares owned: </label>
+    <input type="number" id="shares" name="shares_owned" min="0" value='{{company.shares_owned}}'><br>
+
+    <label for="cost">Edit aggregate cost basis ($USD): </label>
+    <input type="number" id="cost" name="cost_basis" min="0.01" step="0.01" value='{{company.cost_basis}}'><br>
+
+    <button type="submit">Save</button>
+  </form>
+</body>
+
+</html>

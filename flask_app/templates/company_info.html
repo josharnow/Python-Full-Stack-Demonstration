@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{company.name}}</title>
+</head>
+<body>
+  <h1>{{company.name}}</h1>
+  <p>Ticker symbol: {{company.ticker_symbol}}</p>
+  <p>Stock exchange: {{company.stock_exchange}}</p>
+  <p>Shares owned: {{company.shares_owned}}</p>
+  <p>Cost Basis: ${{company.cost_basis}}</p>
+
+  <a href="/companies/{{company.id}}/edit">Edit</a>
+  <a href="/companies/{{company.id}}/delete">Delete</a>
+
+  <a href="/companies">Return to assets page</a>
+
+</body>
+</html>

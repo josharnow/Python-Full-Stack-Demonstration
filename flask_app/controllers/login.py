@@ -34,14 +34,15 @@ def register_user():
       'password': bcrypt.generate_password_hash(request.form['password'])
     }
     
-    user.id = User.create_user(data)
+    user_id = User.create_user(data)
     
-    session['user_id'] = user.id
+    session['user_id'] = user_id
     
     return redirect('/success')
-    
-  # Create user if data is valid
-  return redirect('/')
+  
+  else:
+    # Create user if data is valid
+    return redirect('/')
 
 @app.route('/users/login', methods=['POST'])
 def login_user():
@@ -63,19 +64,10 @@ def login_user():
     flash('Password for the given user is incorrect.')
     return redirect('/')
   
-  # flash('Login successful')
   session['user_id'] = user.id
   session['user_username'] = user.username
   
   return redirect('/success')
-
-@app.route('/success')
-def success():
-  if 'user_id' not in session:
-    flash('Please log in to view this page.')
-    return redirect('/')
-  
-  return render_template('success.html')
 
 @app.route('/logout')
 def logout():
